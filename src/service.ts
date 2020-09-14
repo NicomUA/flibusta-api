@@ -80,19 +80,19 @@ export async function searchByAuthor(
 
 export async function getBookInfo(id: number): Promise<BookInfo | undefined> {
   const page: string = await getPage(`${ORIGIN}/b/${id}`);
-  const authorRegExp = /\/script><a href="\/a\/[0-9]+">(?<author>\W+)<\/a>/gi;
-  const titleRegExp = /<title>(?<title>\W+).+<\/title>/gi;
+  const authorRegExp = /\/script><a href="\/a\/[0-9]+">(?<author>[\w\W][^()|]+)<\/a>/i;
+  const titleRegExp = /<title>(?<title>[\w\W][^()|]+).*<\/title>/i;
   try {
     const bookInfo: BookInfo = { id, author: '', title: '' };
 
     const authorMatch = authorRegExp.exec(page);
     if (authorMatch && authorMatch.groups) {
-      bookInfo.author = authorMatch.groups.author;
+      bookInfo.author = authorMatch.groups.author.trim();
     }
 
     const titleMatch = titleRegExp.exec(page);
     if (titleMatch && titleMatch.groups) {
-      bookInfo.title = titleMatch.groups.title;
+      bookInfo.title = titleMatch.groups.title.trim();
     }
 
     return bookInfo;
