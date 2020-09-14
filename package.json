@@ -24,7 +24,7 @@
     "search"
   ],
   "author": "Nikita Matsapura",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NicomUA/flibusta-api/issues"
   },
