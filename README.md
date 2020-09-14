@@ -13,4 +13,4 @@ TODO
 
 ## License
 
-[MIT](https://github.com/NicomUA/flibusta-api/blob/master/LICENSE)
+[MIT](https://github.com/NicomUA/flibusta-api/blob/master/LICENSE.md)
