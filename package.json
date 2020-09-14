@@ -8,7 +8,7 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint . --ext .ts",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -19,7 +19,11 @@
     "type": "git",
     "url": "git+https://github.com/NicomUA/flibusta-api.git"
   },
-  "keywords": ["flibusta", "api", "search"],
+  "keywords": [
+    "flibusta",
+    "api",
+    "search"
+  ],
   "author": "Nikita Matsapura",
   "license": "ISC",
   "bugs": {
@@ -27,7 +31,11 @@
   },
   "homepage": "https://github.com/NicomUA/flibusta-api#readme",
   "devDependencies": {
+    "@types/html-to-text": "^5.1.2",
     "@types/jest": "^26.0.13",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.9.0",
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "ts-jest": "^26.3.0",
@@ -37,5 +45,9 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "axios": "^0.20.0",
+    "html-to-text": "^5.1.1"
+  }
 }
