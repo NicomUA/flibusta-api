@@ -13,4 +13,4 @@ TODO
 
 ## License
 
-[MIT](http://vjpr.mit-license.org)
+[MIT](https://github.com/NicomUA/flibusta-api/blob/master/LICENSE)
