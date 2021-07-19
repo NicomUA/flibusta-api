@@ -1,6 +1,6 @@
 {
   "name": "flibusta-api",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -44,7 +44,7 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "html-to-text": "^5.1.1"
   }
 }
