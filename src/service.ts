@@ -101,9 +101,9 @@ export async function getBookInfo(id: number): Promise<BookInfo | undefined> {
   }
 }
 
-export async function downBook(id: string): Promise<BookFile> {
+export async function downBook(id: string, format: BookFormat = 'mobi'): Promise<BookFile> {
   const response = await axios({
-    url: getUrl(id),
+    url: getUrl(id, format),
     method: 'GET',
     responseType: 'stream',
   });
