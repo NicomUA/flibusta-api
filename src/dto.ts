@@ -19,4 +19,4 @@ export interface BookFile {
   filePath?: string;
 }
 
-export type BookFormat = 'mobi' | 'fb2' | 'pdf';
+export type BookFormat = 'mobi' | 'fb2' | 'pdf' | 'epub';
