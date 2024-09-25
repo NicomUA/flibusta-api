@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Service should find books 1`] = `
+[
+  {
+    "author": "I am author",
+    "id": 1,
+    "link": "/download_1",
+    "sendLink": "/send_1",
+    "title": "Test book",
+  },
+]
+`;
+
+exports[`Service should get book info 1`] = `
+{
+  "author": "I am author",
+  "id": 1,
+  "title": "Test book",
+}
+`;

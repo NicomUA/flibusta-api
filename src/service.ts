@@ -2,7 +2,8 @@ import axios from 'axios';
 import { Book, BookFile, BookFormat, BookInfo } from './dto';
 import { logger } from './logger';
 
-import htmlToText = require('html-to-text');
+import { convert } from 'html-to-text';
+
 const ORIGIN = 'http://flibusta.is';
 
 async function getPage(url: string) {
@@ -28,8 +29,8 @@ export async function searchBooks(text: string, limit = 20): Promise<Book[]> {
       const { id, title, author } = match.groups;
       results.push({
         id: parseInt(id),
-        title: htmlToText.fromString(title, { ignoreHref: true }),
-        author: htmlToText.fromString(author, { ignoreHref: true }),
+        title: convert(title),
+        author: convert(author),
         link: `/download_${id}`,
         sendLink: `/send_${id}`,
       });
@@ -68,8 +69,8 @@ export async function searchByAuthor(
       const { id, title } = match.groups;
       results.push({
         id: parseInt(id),
-        title: htmlToText.fromString(title, { ignoreHref: true }),
-        author: htmlToText.fromString(author.name, { ignoreHref: true }),
+        title: convert(title),
+        author: convert(author.name),
         link: `/download_${id}`,
         sendLink: `/send_${id}`,
       });

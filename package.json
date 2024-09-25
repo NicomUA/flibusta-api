@@ -23,14 +23,14 @@
     "api",
     "search"
   ],
-  "author": "Nikita Matsapura",
+  "author": "Mykyta Matsapura",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/NicomUA/flibusta-api/issues"
   },
   "homepage": "https://github.com/NicomUA/flibusta-api#readme",
   "devDependencies": {
-    "@types/html-to-text": "^5.1.2",
+    "@types/html-to-text": "^9.0.4",
     "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
