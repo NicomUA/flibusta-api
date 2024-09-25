@@ -3,11 +3,11 @@
 exports[`Service should find books 1`] = `
 [
   {
-    "author": "I am author",
-    "id": 1,
-    "link": "/download_1",
-    "sendLink": "/send_1",
-    "title": "Test book",
+    "author": "Маргарет Уэйс, Трейси Хикмэн",
+    "id": 77650,
+    "link": "/download_77650",
+    "sendLink": "/send_77650",
+    "title": "Испытание близнецов [Test of the Twins - ru]",
   },
 ]
 `;

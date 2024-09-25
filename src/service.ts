@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Book, BookFile, BookFormat, BookInfo } from './dto';
 import { logger } from './logger';
 
-import { convert } from 'html-to-text';
+import { compile } from 'html-to-text';
 
 const ORIGIN = 'http://flibusta.is';
 
@@ -14,6 +14,8 @@ async function getPage(url: string) {
     logger.log(error);
   }
 }
+
+const compiledConvert = compile({ decodeEntities: true, selectors: [{ selector: 'a', options: { ignoreHref: true } }] });
 
 export async function searchBooks(text: string, limit = 20): Promise<Book[]> {
   const page: string = await getPage(
@@ -29,8 +31,8 @@ export async function searchBooks(text: string, limit = 20): Promise<Book[]> {
       const { id, title, author } = match.groups;
       results.push({
         id: parseInt(id),
-        title: convert(title),
-        author: convert(author),
+        title: compiledConvert(title),
+        author: compiledConvert(author),
         link: `/download_${id}`,
         sendLink: `/send_${id}`,
       });
@@ -69,8 +71,8 @@ export async function searchByAuthor(
       const { id, title } = match.groups;
       results.push({
         id: parseInt(id),
-        title: convert(title),
-        author: convert(author.name),
+        title: compiledConvert(title),
+        author: compiledConvert(author.name),
         link: `/download_${id}`,
         sendLink: `/send_${id}`,
       });
