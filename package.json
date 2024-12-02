@@ -8,10 +8,6 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "lint": "eslint src",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
