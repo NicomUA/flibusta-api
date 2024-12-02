@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Book, BookFile, BookFormat, BookInfo } from './dto';
 import { logger } from './logger';
+import * as cheerio from 'cheerio';
 
 import { compile } from 'html-to-text';
 
@@ -82,21 +83,24 @@ export async function searchByAuthor(
 }
 
 export async function getBookInfo(id: number): Promise<BookInfo | undefined> {
-  const page: string = await getPage(`${ORIGIN}/b/${id}`);
-  const authorRegExp = /\/script><a href="\/a\/[0-9]+">(?<author>[\w\W][^<>()|]+)<\/a>/i;
-  const titleRegExp = /<title>(?<title>[\w\W][^()|]+).*<\/title>/i;
+  const page = await getPage(`${ORIGIN}/b/${id}`);
+  const $ = await cheerio.load(page);
+
   try {
-    const bookInfo: BookInfo = { id, author: '', title: '' };
+    const bookInfo = { id } as BookInfo;
 
-    const authorMatch = authorRegExp.exec(page);
-    if (authorMatch && authorMatch.groups) {
-      bookInfo.author = authorMatch.groups.author.trim();
-    }
-
-    const titleMatch = titleRegExp.exec(page);
-    if (titleMatch && titleMatch.groups) {
-      bookInfo.title = titleMatch.groups.title.trim();
-    }
+    const author = $('#main > a[href^="/a/"]').first().text().trim();
+    const title = $('#main > .title').text().trim();
+    const description = $('#main > h2 + p').text().trim();
+    const genres = $('#main > div > p > a[href^="/g/"]').toArray();
+    
+    bookInfo.author = author || '';
+    bookInfo.title = title || '';
+    bookInfo.description = description || '';
+    bookInfo.genres = genres?.map((e) => ({
+      id: e.attribs['name'],
+      title: $(e).text().trim(),
+    })) || [];
 
     return bookInfo;
   } catch (e) {

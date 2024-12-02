@@ -6,10 +6,18 @@ export type Book = {
   sendLink: string;
 };
 
+export type BookGenres = {
+  id: string;
+  title: string;
+}
+
 export type BookInfo = {
   id: number;
   title: string;
   author: string;
+  genres: BookGenres[];
+  description?: string;
+
 };
 
 export interface BookFile {
