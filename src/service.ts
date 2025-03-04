@@ -114,7 +114,7 @@ export async function downBook(id: string, format: BookFormat = 'mobi'): Promise
     method: 'GET',
     responseType: 'stream',
   });
-  const fileName = response.headers['content-disposition'].slice(21);
+  const fileName = response?.headers['content-disposition']?.slice(21);
   if (!fileName) throw new Error(`Book ${id} unavailable.`);
 
   return {
